@@ -1,0 +1,31 @@
+
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	
+}
+
+h2{
+	text-align: center;
+	margin: 40px auto;
+	font-size: 50px;
+}
+.one
+{
+	text-align: right;
+	padding: 40px;
+	font-size: 20px;
+}
+table {
+    width: 100%;
+	margin-top: 20px;
+	border: 1px;
+	text-align: center;
+    background-color: yellow;
+  }
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
