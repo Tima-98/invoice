@@ -1,78 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoicce</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script>
 
-        $(document).ready(function(){
-            $('#add').click(function(){
-                var designation = $("#des").val();
-                var quantity = $("#qty").val();
-                var prix = $("#pu").val();
-                var total = $("#pt").val();
-                var markup = "<tr><td><input type='textarea'>"+ designation + "</td><td> <input type='number'>" + quantity + "</td> <td> <input type='number'>" + prix + "</td> <td> <input type='number'>" + total + "</td></tr>";
-                $("table tbody").append(markup);
-            });
-  });
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Invoice</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+        <link rel="stylesheet" href="style.css">
+    </head>
 
-            });
-    </script>
-</head>
-<body>
-    <h2>LOGO HERE</h2>
-    <div class="one">
-    <label for="facture">Facture N°:</label><br>
-    <input type="number" id="num">
-    </class>
-    </div>
-    <div class="two">
+    <body>
+        <h2>LOGO HERE</h2>
+        <div class="one">
+            <label for="facture">Facture N°:</label><br>
+            <input type="number" id="num">
+        </div>
+        <div class="two">
             <span>Client Name</span>
-            <input type="text" id="name"> 
+            <input type="text" id="name">
             <span>Date</span>
-            <input type="date" id="date"> 
-    </div>
-    <div class="three">
-        <table>
-            <thead>
-            <tr>
-              <th>Designation</th>
-              <th>Qty</th>
-              <th>PU</th>
-              <th>Montant</th>
-            </tr>
-            </thead>
-            <tbody id='tbody'>
-            <tr>
-              <td> <input type="textarea" id="des"> </td>
-              <td> <input type="number" id="qty"> </td>
-              <td> <input type="number" id="pu"></td>
-              <td> <input type="number" id="pt"></td>
-            </tr>
-            </tbody>
-        </table>
-</div>
-<div class="four">
-    <input type="submit" id="add" value="+Ligne"> 
-    <input type="submit" id="mo" value="-Ligne"> 
-</div>
-<div class="seven">
-    <span>Total</span>
-    <input type="number" id="t"> 
-    </div>
-</body>
-<div class="six">
-<span>TVA</span>
-<input type="number" id="tva"> 
-</div>
-<div class="seven">
-    <span>Total Genaral</span>
-    <input type="number" id="tg"> 
-    </div>
-</body>
+            <input type="date" id="date">
+        </div>
+        <div class="three">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Designation</th>
+                        <th>Qty</th>
+                        <th>Prix</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
 
+                <tbody id='tbody'>
+                    <tr>
+                        <td><input type="textarea" class="description"></td>
+                        <td><input type="number" class="qty"></td>
+                        <td><input type="number" class="prix_unite"></td>
+                        <td><input type="number" class="prix_total"></td>
+                        <td style="text-align: center;">
+                            <i onclick="remove_ligne(this)" class="fas fa-trash-alt"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="four">
+            <br>
+            <input type="button" id="add" value="Add Ligne">
+            <br>
+        </div>
+        <div class="seven">
+            <span>Total HT :</span>
+            <span id="total_ht"></span>
+        </div>
+        <div class="six">
+            <span>Tva :</span>
+            <span id="tva"></span>
+        </div>
+        <div class="seven">
+            <span>Total TTC :</span>
+            <span id="total_ttc"></span>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#add').click(function () {
+                    var designation = $("#des").val();
+                    var quantity = $("#qty").val();
+                    var prix = $("#pu").val();
+                    var total = $("#pt").val();
+
+                    var markup = '<tr>';
+                        markup += '<td><input type="textarea" class="description"></td>';
+                        markup += '<td><input type="number" class="qty"></td>';
+                        markup += '<td><input type="number" class="prix_unite"></td>';
+                        markup += '<td><input type="number" class="prix_total"></td>';
+                        markup += '<td style="text-align: center;">';
+                        markup += '<a>';
+                        markup += '<i class="fas fa-trash-alt"></i>';
+                        markup += '</a>';
+                        markup += '</td>';
+                        markup += '</tr>';
+
+                    $("table tbody").append(markup);
+                });
+            });
+
+            function remove_ligne(elem) {
+                $(elem).parents('tr').remove();
+            }
+        </script>
+    </body>
 </html>
