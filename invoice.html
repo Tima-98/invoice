@@ -6,6 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoicce</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function(){
+            $('#add').click(function(){
+                var designation = $("#des").val();
+                var quantity = $("#qty").val();
+                var prix = $("#pu").val();
+                var total = $("#pt").val();
+                var markup = "<tr><td><input type='textarea'>"+ designation + "</td><td> <input type='number'>" + quantity + "</td> <td> <input type='number'>" + prix + "</td> <td> <input type='number'>" + total + "</td></tr>";
+                $("table tbody").append(markup);
+            });
+  });
+
+            });
+    </script>
 </head>
 <body>
     <h2>LOGO HERE</h2>
@@ -22,31 +38,40 @@
     </div>
     <div class="three">
         <table>
+            <thead>
             <tr>
               <th>Designation</th>
               <th>Qty</th>
               <th>PU</th>
               <th>Montant</th>
             </tr>
+            </thead>
+            <tbody id='tbody'>
+            <tr>
+              <td> <input type="textarea" id="des"> </td>
+              <td> <input type="number" id="qty"> </td>
+              <td> <input type="number" id="pu"></td>
+              <td> <input type="number" id="pt"></td>
+            </tr>
+            </tbody>
         </table>
 </div>
 <div class="four">
-    <input type="textarea" id="designation"> 
-    <input type="number" id="qty"> 
-    <input type="number" id="PU"> 
-    <input type="number" id="Montant"> 
-</div>
-<div class="five">
     <input type="submit" id="add" value="+Ligne"> 
-    <input type="reset" id="moins" value="-Ligne"> 
+    <input type="submit" id="mo" value="-Ligne"> 
 </div>
+<div class="seven">
+    <span>Total</span>
+    <input type="number" id="t"> 
+    </div>
+</body>
 <div class="six">
 <span>TVA</span>
 <input type="number" id="tva"> 
 </div>
 <div class="seven">
-    <span>Total</span>
-    <input type="number" id="total"> 
+    <span>Total Genaral</span>
+    <input type="number" id="tg"> 
     </div>
 </body>
 
