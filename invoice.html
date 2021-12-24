@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,8 +21,7 @@
             <span>Date</span>
             <input type="date" id="date">
         </div>
-        <div class="three">
-            <table>
+            <table id="facture">
                 <thead>
                     <tr>
                         <th>Designation</th>
@@ -34,65 +32,79 @@
                     </tr>
                 </thead>
 
-                <tbody id='tbody'>
-                    <tr>
-                        <td><input type="textarea" class="description"></td>
-                        <td><input type="number" class="qty"></td>
-                        <td><input type="number" class="prix_unite"></td>
-                        <td><input type="number" class="prix_total"></td>
-                        <td style="text-align: center;">
+                <tbody>
+                    <tr class="active">
+                            <td><input type="text" class="description"></td>
+                            <td class="qte"><input type="number" class="qty"></td>
+                            <td class="pu"> <input type="number" class="prix_unite" onkeyup="inline_calcul(this)"></td>
+                            <td class="inline_total">0.00 DH</td>
+                            <td style="text-align: center;">
                             <i onclick="remove_ligne(this)" class="fas fa-trash-alt"></i>
-                        </td>
+                            </td>
                     </tr>
                 </tbody>
             </table>
-        </div>
-        <div class="four">
-            <br>
-            <input type="button" id="add" value="Add Ligne">
-            <br>
-        </div>
-        <div class="seven">
-            <span>Total HT :</span>
-            <span id="total_ht"></span>
-        </div>
-        <div class="six">
-            <span>Tva :</span>
-            <span id="tva"></span>
-        </div>
-        <div class="seven">
-            <span>Total TTC :</span>
-            <span id="total_ttc"></span>
-        </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                <div class="four">
+                    <br>
+                    <input type="button" id="add" value="Add Ligne">
+                    <br>
+                </div>
+                <div class="seven">
+                    <span>Total HT :</span>
+                    <span id="total_ht"></span>
+                </div>
+                <div class="six">
+                    <span>Tva :</span>
+                    <span id="tva"></span>
+                </div>
+                <div class="seven">
+                    <span>Total TTC :</span>
+                    <span id="total_ttc"></span>
+                </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>    
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
-        <script>
+        <Script>
             $(document).ready(function () {
-                $('#add').click(function () {
-                    var designation = $("#des").val();
-                    var quantity = $("#qty").val();
-                    var prix = $("#pu").val();
-                    var total = $("#pt").val();
-
-                    var markup = '<tr>';
-                        markup += '<td><input type="textarea" class="description"></td>';
-                        markup += '<td><input type="number" class="qty"></td>';
-                        markup += '<td><input type="number" class="prix_unite"></td>';
-                        markup += '<td><input type="number" class="prix_total"></td>';
-                        markup += '<td style="text-align: center;">';
-                        markup += '<a>';
-                        markup += '<i class="fas fa-trash-alt"></i>';
-                        markup += '</a>';
+                $('#add').click(function () 
+                    {
+                    var markup =  '<tr class="active">';
+                        markup += '<td><input type="textarea" class="description">';
+                        markup += '</td>';
+                        markup += '<td class="qte"><input type="number" class="qty">';
+                        markup += '</td>';    
+                        markup += '<td class="pu"><input type="number" class="prix_unite" onkeyup="inline_calcul(this)">';
+                        markup += '</td>';
+                        markup += '<td class="inline_total">0.00 DH';
+                        markup += '</td>';    
+                        markup += '<td style="text-align:center;">';
+                        markup += '<i onclick="remove_ligne(this)" class="fas fa-trash-alt"></i>';
                         markup += '</td>';
                         markup += '</tr>';
-
                     $("table tbody").append(markup);
+                   });
                 });
-            });
-
-            function remove_ligne(elem) {
-                $(elem).parents('tr').remove();
-            }
-        </script>
+                function remove_ligne(element) {
+                $(element).parents('tr').remove();
+                }
+                function inline_calcul(element) 
+               {
+               var prix = $(element).parents('tr').find('.prix_unite').val();
+               var qte = $(element).parents('tr').find('.qty').val();
+               var total = parseInt(qte*prix);
+               $(element).parents('tr').find('.inline_total').text(total+' DH');
+               global_total();
+               }
+               function global_total() {
+               var total_ht = 0;
+               $('#facture  tr.active').each(function (index, tr) {
+               var qte = $(tr).find('.qty').val();
+               var prix = $(tr).find('.prix_unite').val();
+               total_ht += parseInt(qte * prix);
+               });
+               $('#total_ht').text(total_ht+' DH');
+               $('#tva').text(total_ht*20/100+' DH');
+               $('#total_ttc').text(total_ht + total_ht * 20/100  +' DH');
+              }
+        </Script>
     </body>
 </html>
