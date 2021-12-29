@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./css.css">
+    <script src="./jquery-3.6.0.min.js"></script>
+    <script src="./all.js"></script>
+    <script src="./number.min.js"></script>
+
+</head>
+<body>
+    <div id="invoice">
+        <!-- <div class="toolbar hidden-print">
+            <div class="text-right">
+                <button id="printInvoice" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
+                <button class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Export as PDF</button>
+            </div>
+            <hr>
+        </div> -->
+        <div class="invoice overflow-auto">
+            <div style="min-width: 600px">
+                <header>
+                    <div class="row">
+                        <div class="col">
+                            <a target="_blank" href="https://lobianijs.com">
+                                <img src="./img/lobiadmin-logo-text-64.png" data-holder-rendered="true" />
+                            </a>
+                        </div>
+                        <div class="col company-details">
+                            <h2 class="name">
+                                <a target="_blank" href="https://lobianijs.com">
+                                    Arboshiki
+                                </a>
+                            </h2>
+                            <div>455 Foggy Heights, AZ 85004, US</div>
+                            <div>(123) 456-789</div>
+                            <div>company@example.com</div>
+                        </div>
+                    </div>
+                </header>
+                <main>
+                    <div class="row contacts">
+                        <div class="col invoice-to">
+                            <div class="text-gray-light">INVOICE TO:</div>
+                            <h2 class="to">John Doe</h2>
+                            <div class="address">796 Silver Harbour, TX 79273, US</div>
+                            <div class="email"><a href="mailto:john@example.com">john@example.com</a></div>
+                        </div>
+                        <div class="col invoice-details">
+                            <h1 class="invoice-id">INVOICE 3-2-1</h1>
+                            <div class="date">Date of Invoice: 01/10/2018</div>
+                            <div class="date">Due Date: 30/10/2018</div>
+                        </div>
+                    </div>
+                    <table id="facture_table">
+                        <thead>
+                            <tr>
+                                <th class="text-left">Description</th>
+                                <th class="text-right">Qty</th>
+                                <th class="text-right">Prix</th>
+                                <th class="text-right">Total</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="active">
+                                <td>
+                                    <input type="text">
+                                </td>
+                                <td class="unit">
+                                    <input class="qte" type="number">
+                                </td>
+                                <td class="qty">
+                                    <input class="prix" type="number" onkeyup="inline_calcul(this)">
+                                </td>
+                                <td class="inline_total">0.00 DH</td>
+                                <td style="text-align: center;">
+                                    <button style="cursor: pointer;border: none;" onclick="delete_row(this)">
+                                        <i class="far fa-trash-alt" style="font-size: 20px;"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5" style="text-align: center;">
+                                    <button id="add_ligne" class="add">+</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td colspan="2">TOTAL HT</td>
+                                <td id="total_ht">0 DH</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td colspan="2">TAX 20%</td>
+                                <td id="tva">0 DH</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td colspan="2">TOTAL TTC</td>
+                                <td id="total_ttc">0 DH</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <div class="thanks">Thank you!</div>
+                    <div class="notices">
+                        <div>NOTICE:</div>
+                        <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+                    </div>
+                </main>
+                <footer>
+                    Invoice was created on a computer and is valid without the signature and seal.
+                </footer>
+            </div>
+            <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
+            <div></div>
+        </div>
+    </div>
+    <script src="./js.js"></script>
+</body>
+</html>
